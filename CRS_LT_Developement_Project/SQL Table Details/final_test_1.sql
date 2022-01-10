@@ -87,7 +87,7 @@ CREATE TABLE `professor` (
   `course_id` int(11) default NULL,
   PRIMARY KEY  (`professor_id`),
   KEY `f1` (`course_id`),
-  CONSTRAINT `f1` FOREIGN KEY (`course_id`) REFERENCES `course` (`course_id`) ON DELETE CASCADE ON UPDATE CASCADE
+  CONSTRAINT `f1` FOREIGN KEY (`course_id`) REFERENCES `course` (`course_id`) ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
