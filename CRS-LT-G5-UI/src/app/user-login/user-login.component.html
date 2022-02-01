@@ -1,0 +1,76 @@
+<div class="bg-image" 
+     style="background-image: url('https://mdbootstrap.com/img/Photos/Others/images/76.jpg');
+            height: 100vh">
+
+     <div class="container">
+          <div class="d-flex justify-content-center h-100">
+               <div class="card">
+                    <div class="card-header">
+                         <h3>Sign In</h3>
+                         
+                    </div>
+                    <div class="card-body">
+                         <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+                              <div class="group-gap">
+                                   <label for="userId">User ID</label>
+                                   <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                          <span class="input-group-text" id="basic-addon1"><i class="fas fa-user"></i></span>
+                                        </div>
+                                        <input name="userId" type="number" class="input form-control" formControlName="userId" id="userId" placeholder="User ID" aria-label="userId" aria-describedby="basic-addon1" />
+                                       
+                                         
+                                   </div>
+                                   <div class="input-group mb-1">
+                                   <span class="error" *ngIf="loginForm.controls['userId'].hasError('required') && loginForm.controls['userId'].touched"
+                                   >*Required</span>
+                                   </div>
+                                   <div class="input-group mb-1">
+                                      <label for="password">Password</label>
+                                      </div>
+                                   <div class="input-group mb-3">
+
+                                        <div class="input-group-prepend">
+                                          <span class="input-group-text" id="basic-addon1"><i class="fa fa-unlock"></i></span>
+                                        </div>
+                                        <input #password name="password" type="password"  class="input form-control" id="password" placeholder="password" formControlName="password" aria-label="password" aria-describedby="basic-addon1" />
+                                       
+                                        <div class="input-group-append">
+                                          <span class="input-group-text" (click)="password_show_hide(password)">
+                                            <i class="fas fa-eye"  [hidden]="!showPassword" id="show_eye"></i>
+                                            <i class="fa fa-eye-slash" [hidden]="showPassword" id="hide-eye"></i>
+                                           
+                                          </span>
+                                        </div>
+                                      </div>
+
+                              </div>
+                              <div class="input-group mb-1">
+                                   <span class="error" *ngIf="loginForm.controls['password'].hasError('required') && loginForm.controls['password'].touched"
+                                   >*Required</span>
+                              </div>
+                              <div class="input-group mb-1" *ngIf="this.loginUnSuccess">
+                                   <span class="error" >{{this.loginUnSuccessMessage}}</span>
+                                   </div>
+                              <div class="input-group mb-1 justify-content-center">
+                                   <div class="row">
+                                        <div class="col">
+                                             <button class="btn btn-danger form-control  btn-block" routerLink=''>Cancel</button></div>
+                                           <div class="col">
+                                             <button id="btnSubmit" class="btn btn-primary form-control btn-block" [disabled]="loginForm.invalid" name="login" type="submit" >Login</button></div>
+                                    </div>
+                             
+                        </div>
+                         </form>
+                    </div>
+                    <div class="card-footer">
+                         <div class="container px-4 px-lg-5"><p class="m-0 text-center text-white">Copyright &copy; CRS Website 2022</p></div>
+                    </div>
+               </div>
+          </div>
+     </div>
+
+</div>
+
+
+<router-outlet></router-outlet>

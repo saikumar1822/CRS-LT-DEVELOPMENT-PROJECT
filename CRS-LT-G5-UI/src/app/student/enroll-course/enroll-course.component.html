@@ -1,0 +1,49 @@
+<div>
+  
+        <div class="table-responsive">
+            <table class="table display nowrap">
+                <thead>
+    
+                    <tr>
+          
+                      <th scope="col">S.No</th>
+          
+                      <th scope="col">Course ID</th>
+          
+                      <th scope="col">Course Name</th>
+          
+                      <th scope="col">Add Course</th>
+
+                      <th scope="col">Messages</th>
+        
+          
+                    </tr>
+          
+                  </thead>
+          
+                  <tbody >
+                    <tr *ngFor='let course of this.listOfCourses;let i=index' >
+    
+                        <th scope="row">{{i+1}}</th>
+            
+                        <td >{{course.courseId}}</td>
+            
+                        <td>{{course.courseName | uppercase}}</td>
+            
+                        <td> <button type="button" class="btn btn-primary" (click)="addCourse(i)">Add</button></td>
+            
+                      <td *ngIf="this.courseAddedIndex==i">{{this.addedMessage}}</td>
+                      <td *ngIf="this.courseAddedIndex!=i">NA</td>
+            
+                      </tr>
+            
+                 
+            
+                    </tbody>
+            </table>
+          </div>
+        
+    
+
+
+</div>

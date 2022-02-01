@@ -1,0 +1,9 @@
+{
+    "/login": {
+      "target": "http://localhost:8939",
+      "secure": false,
+      "logLevel": "debug",
+	     "changeOrigin": false
+      
+    }
+  }

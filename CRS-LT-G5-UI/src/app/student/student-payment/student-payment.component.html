@@ -1,0 +1,165 @@
+<div>
+  
+    <div class="table-responsive">
+        <table class="table display nowrap">
+            <thead>
+
+                <tr>
+      
+                  <th scope="col">S.No</th>
+      
+                  <th scope="col">Course ID</th>
+      
+                  <th scope="col">Course Name</th>
+      
+                  <th scope="col">Pay</th>
+
+                 
+                 
+
+                
+    
+      
+                </tr>
+      
+              </thead>
+      
+              <tbody >
+                <tr *ngFor='let course of this.listOfEnrolledCourses;let i=index' >
+
+                    <th scope="row">{{i+1}}</th>
+        
+                    <td >{{course.courseId}}</td>
+        
+                    <td>{{course.courseName | uppercase}}</td>
+        
+                    <td> <button type="button" class="btn btn-primary" (click)="payCourse(i)">Pay</button></td>
+            
+                 
+                 
+                  </tr>
+        
+             
+        
+                </tbody>
+        </table>
+      </div>
+    
+     
+      <div class="container">
+        <div class="d-flex justify-content-center h-100">
+<div *ngIf="this.makePayment">
+<div class="successContainer"   *ngIf="this.paymentSuccess">
+   <div class="input-group mb-1 justify-content-center">
+        <span   class="succes" >{{this.paymentSuccessMessage}}</span>
+   <button  type="button" class="btn btn-primary" (click)="successPay()">Click OK To Pay Next</button>
+   </div>
+   
+</div>
+             <div class="card"   *ngIf="!this.paymentSuccess">
+                  <div class="card-header">
+                       <h3>Student Payment Form</h3>
+                       
+                  </div>
+                
+                  <div class="card-body">
+                       <form [formGroup]="studentPaymentForm" (ngSubmit)="onPay()">
+                            <div class="group-gap">
+                              <!--  <div class="input-group mb-1">
+                                    <label for="studentId">Student ID</label>
+                                    </div>
+                                 <div class="input-group mb-3">
+                                      <input  name="studentId" type="number"  class="input form-control" id="studentId" placeholder="Student ID" formControlName="studentId" aria-label="studentId" aria-describedby="basic-addon1" />
+                                  
+                                    </div>
+    
+                       
+                            <div class="input-group mb-1">
+                                 <span class="error" *ngIf="studentPaymentForm.controls['studentId'].hasError('required') && studentPaymentForm.controls['studentId'].touched"
+                                 >*Required</span>
+                            </div>
+                            <div class="input-group mb-1">
+                                <label for="courseId">Course ID</label>
+                                </div>
+                             <div class="input-group mb-3">
+                                  <input  name="courseId" type="number"  class="input form-control" id="courseId" placeholder="Course ID" formControlName="courseId" aria-label="courseId" aria-describedby="basic-addon1" />
+                              
+                                </div>
+
+                   
+                        <div class="input-group mb-1">
+                             <span  class="error" *ngIf="studentPaymentForm.controls['courseId'].hasError('required') && studentPaymentForm.controls['courseId'].touched"
+                             >*Required</span>
+                        </div> -->
+
+                        <div class="input-group mb-1">
+                            <label for="cardNo">Card Number</label>
+                            </div>
+                         <div class="input-group mb-3">
+                              <input  name="cardNo" type="text"  class="input form-control" id="cardNo" placeholder="Card Number" formControlName="cardNo" aria-label="cardNo" aria-describedby="basic-addon1" />
+                          
+                            </div>
+
+               
+                    <div class="input-group mb-1">
+                         <span  class="error" *ngIf="studentPaymentForm.controls['cardNo'].hasError('required') && studentPaymentForm.controls['cardNo'].touched"
+                         ></span>
+                         <span  class="error" *ngIf="studentPaymentForm.controls['cardNo'].invalid && studentPaymentForm.controls['cardNo'].touched"
+                     >Please provide valid card details of length between 13 and 16</span>
+                    </div>
+
+                    <div class="input-group mb-1">
+                        <label for="cvv">CVV</label>
+                        </div>
+                     <div class="input-group mb-3">
+                          <input  name="cvv" type="text"  class="input form-control" id="cvv" placeholder="CVV" formControlName="cvv" aria-label="cvv" aria-describedby="basic-addon1" />
+                      
+                        </div>
+
+           
+                <div class="input-group mb-1">
+                     <span  class="error" *ngIf="studentPaymentForm.controls['cvv'].hasError('required')&& studentPaymentForm.controls['cvv'].touched"
+                     ></span>
+                     <span  class="error" *ngIf="studentPaymentForm.controls['cvv'].invalid && studentPaymentForm.controls['cvv'].touched"
+                     >*Please provide valid cvv of length 3</span>
+                     
+                </div>
+
+                <div class="input-group mb-1">
+                    <label for="expiryDate">Expiry Date</label>
+                    </div>
+                 <div class="input-group mb-3">
+                      <input  name="expiryDate" type="text"  class="input form-control" id="expiryDate" placeholder="MM/YY" formControlName="expiryDate" aria-label="expiryDate" aria-describedby="basic-addon1" />
+                  
+                    </div>
+
+       
+            <div class="input-group mb-1">
+                 <span  class="error" *ngIf="studentPaymentForm.controls['expiryDate'].hasError('required') && studentPaymentForm.controls['expiryDate'].touched"
+                 >*Required</span>
+            </div>
+                           
+                               
+                      <div class="input-group mb-1">
+                       <span *ngIf="this.paymentUnSuccess" class="error" >{{this.paymentUnSuccessMessage}}</span>
+                       </div>
+                            <div class="input-group mb-1 justify-content-center">
+                                 <div class="row">
+                                      <div class="col">
+                                           <button class="btn btn-danger form-control  btn-block" (click)="cancelPay()">Cancel</button></div>
+                                         <div class="col">
+                                           <button id="btnSubmit" class="btn btn-primary form-control btn-block"  [disabled]="studentPaymentForm.invalid" name="passwordUpdate" type="submit" >Pay</button></div>
+                                  </div>
+                         
+                      </div>
+                    </div>
+                       </form>
+                  </div>
+                 
+             </div>
+        </div>
+  
+</div>
+</div>
+
+

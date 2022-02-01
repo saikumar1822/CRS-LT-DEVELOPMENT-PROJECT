@@ -1,0 +1,54 @@
+<div>
+  
+    <div class="table-responsive">
+        <table class="table display nowrap">
+            <thead>
+
+                <tr>
+      
+                  <th scope="col">S.No</th>
+      
+                  <th scope="col">Course ID</th>
+      
+                  <th scope="col">Course Name</th>
+      
+                  <th scope="col">Drop Course</th>
+
+                 
+                 
+
+                
+    
+      
+                </tr>
+      
+              </thead>
+      
+              <tbody >
+                <tr *ngFor='let course of this.listOfEnrolledCourses;let i=index' >
+
+                    <th scope="row">{{i+1}}</th>
+        
+                    <td >{{course.courseId}}</td>
+        
+                    <td>{{course.courseName | uppercase}}</td>
+        
+                    <td> <button type="button" class="btn btn-primary" (click)="dropCourse(i)">Drop</button></td>
+            
+                 
+                 
+                  </tr>
+        
+             
+        
+                </tbody>
+        </table>
+      </div>
+    
+      <div class="input-group mb-1">
+        <span *ngIf="this.courseDropped" class="drop" >{{this.courseDroppedMessage}}</span>
+        </div>  
+
+
+</div>
+

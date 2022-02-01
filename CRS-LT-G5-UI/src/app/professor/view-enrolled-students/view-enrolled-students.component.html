@@ -1,0 +1,71 @@
+<div>
+  
+    <div class="table-responsive">
+        <table class="table display nowrap">
+            <thead>
+
+                <tr>
+      
+                  <th scope="col">S.No</th>
+      
+                  <th scope="col">Course ID</th>
+      
+                  <th scope="col">Course Name</th>
+      
+                  <th scope="col">Student ID</th>
+
+                  <th scope="col">Student Name</th>
+                  <th scope="col">Add Grade</th>
+      
+                </tr>
+      
+              </thead>
+      
+              <tbody >
+                <tr *ngFor='let studentDetails of this.listOfEnrolledStudents;let i=index' >
+
+                    <th scope="row">{{i+1}}</th>
+        
+                    <td >{{studentDetails.courseId}}</td>
+        
+                    <td>{{studentDetails.courseName | uppercase}}</td>
+                    <td >{{studentDetails.studentId}}</td>
+        
+                    <td>{{studentDetails.studentName | uppercase}}</td>
+                    <td> <button type="button" class="btn btn-primary" (click)="addGrade(i)">Add</button></td>
+                    <td *ngIf="this.gradeAddedIndex==i">
+                      <form [formGroup]="markForm">
+                        <div class="group-gap">
+        
+                             <div class="input-group mb-3">
+                                 
+                                  <input name="mark" type="number" min="0" max="100" class="input form-control" formControlName="mark" id="mark" placeholder="MARK" aria-label="mark" aria-describedby="basic-addon1" />
+                                 
+                                   
+                             </div>
+                             <div class="input-group mb-1">
+                             <span class="error" *ngIf="markForm.controls['mark'].hasError('required') && markForm.controls['mark'].touched"
+                             >*Required</span>
+                             </div>
+                            
+                  </div>
+                   </form>
+                      
+                    </td>
+                    <td *ngIf="this.gradeAddedIndex==i"><button type="button"  [disabled]="markForm.invalid" class="btn btn-primary" (click)="submitGrade(i)">SUBMIT</button></td>
+                    <td *ngIf="this.gradeAddedIndex==i"><button type="button"  class="btn btn-primary" (click)="cancelAddGrade()">Cancel</button></td>
+                    <td style="color: green;" *ngIf="this.gradeAddedIndex==i">{{this.gradeAddedMessage}}</td>
+                   
+                  </tr>
+        
+             
+        
+                </tbody>
+        </table>
+      </div>
+    
+
+
+
+</div>
+
